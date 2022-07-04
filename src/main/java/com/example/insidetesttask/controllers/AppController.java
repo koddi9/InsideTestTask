@@ -24,13 +24,13 @@ public class AppController {
         return Collections.singletonMap("token",token);
     }
 
-    @PostMapping("/msg")
+    @PostMapping("/message")
     @ResponseStatus(HttpStatus.OK)
     public void postMessageToDb(@RequestBody JsonMessage jsonMessage, @RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationValue) {
         service.saveMessage(jsonMessage, authorizationValue);
     }
 
-    @PostMapping("/msgs")
+    @PostMapping("/messages")
     @ResponseStatus(HttpStatus.OK)
     public List<String> getUserMessagesHistory(@RequestBody JsonMessage jsonMessage, @RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationValue) {
         return service.getMessages(jsonMessage,authorizationValue);

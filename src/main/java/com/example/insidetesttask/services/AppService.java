@@ -8,9 +8,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import static com.example.insidetesttask.exceptions.InvalidPropertyStructureException.*;
+
+import static com.example.insidetesttask.exceptions.InvalidPropertyStructureException.InvalidHeaderStructureException;
+import static com.example.insidetesttask.exceptions.InvalidPropertyStructureException.InvalidMessageStructureException;
 
 @Service
 public class AppService {
@@ -39,6 +42,7 @@ public class AppService {
         String token = parseToken(authValue);
         User user = userService.findUser(token, jsonMessage);
         int count = parseMsgCount(jsonMessage);
+        Collections.reverse(user.getMessages());
         return user.getMessages().stream().map(Message::getValue).limit(count).collect(Collectors.toList());
     }
 

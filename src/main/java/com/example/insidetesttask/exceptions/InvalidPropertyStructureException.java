@@ -12,7 +12,7 @@ public class InvalidPropertyStructureException extends RuntimeException {
     @NoArgsConstructor
     public static class InvalidMessageStructureException extends InvalidPropertyStructureException {
         public InvalidMessageStructureException(String message) {
-            super("Invalid message structure. " + message,"The right example: Bearer_zk25g46uktgk3...");
+            super("Invalid message structure. " + message," The right example: Bearer_zk25g46uktgk3...");
         }
     }
 
@@ -20,7 +20,7 @@ public class InvalidPropertyStructureException extends RuntimeException {
     public static class InvalidHeaderStructureException extends InvalidPropertyStructureException {
 
         public InvalidHeaderStructureException(String header) {
-            super("Invalid header structure: " + header, "The right example: history 10");
+            super("Invalid header structure: " + header, " The right example: history 10");
         }
     }
 }

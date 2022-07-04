@@ -76,10 +76,8 @@ public class AppServiceTests {
     public void givenValidJsonMessage_AndAuthValue_whenGetMessages_returnsMessagesList() {
         int messasgesCount = 5;
         List<String> checkedMsgs = new ArrayList<>();
-        for (int i = 1; i <= messasgesCount; i++) {
-            checkedMsgs.add(
-                    new String("Message" + i)
-            );
+        for (int i = user.getMessages().size(); i > user.getMessages().size()-messasgesCount; i--) {
+            checkedMsgs.add("Message" + i);
         }
         jsonMessage.setMessage("history " + messasgesCount);
 
