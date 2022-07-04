@@ -25,10 +25,12 @@ import java.util.Collections;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -98,7 +100,7 @@ public class AppControllerTests {
         String authValue = "authorization";
         when(appService.saveMessage(any(), anyString())).thenReturn(new Message());
 
-        mvc.perform(post("/msg")
+        mvc.perform(post("/message")
                         .header(HttpHeaders.AUTHORIZATION, authValue)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonMessage))
@@ -110,7 +112,7 @@ public class AppControllerTests {
         String authValue = "authorization";
         doThrow(InvalidPropertyStructureException.class).when(appService).saveMessage(any(), anyString());
 
-        mvc.perform(post("/msg")
+        mvc.perform(post("/message")
                         .header(HttpHeaders.AUTHORIZATION, authValue)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonMessage))
@@ -122,7 +124,7 @@ public class AppControllerTests {
         String authValue = "authorization";
         doThrow(NotCompatibleNameWithTokenSubject.class).when(appService).saveMessage(any(), anyString());
 
-        mvc.perform(post("/msg")
+        mvc.perform(post("/message")
                         .header(HttpHeaders.AUTHORIZATION, authValue)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonMessage))
@@ -135,7 +137,7 @@ public class AppControllerTests {
 
         when(appService.getMessages(any(), anyString())).thenReturn(Collections.emptyList());
 
-        mvc.perform(post("/msgs")
+        mvc.perform(post("/messages")
                         .header(HttpHeaders.AUTHORIZATION, authValue)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonMessage))

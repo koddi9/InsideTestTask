@@ -42,9 +42,6 @@ public class ExceptionHandlerResolver extends ResponseEntityExceptionHandler {
         return new ExceptionData(exception.getClass().getTypeName(), exception.getMessage());
     }
 
-
-
-
     @Data
     @AllArgsConstructor
     private static class ExceptionData {
