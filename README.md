@@ -56,6 +56,7 @@
 
 
 ![2](testshots/test2.jpeg)
+
 3. localhost:8092/messages
 	- POST /messages HTTP/1.1
 	- Host: localhost:8092
@@ -64,7 +65,7 @@
 	- 
 	- {
 	- "name": "user",
-	- "message" : "history 3"	
+	- "message" : "history 5"	
 	- }	
 
 ![3](testshots/test3.jpeg)
