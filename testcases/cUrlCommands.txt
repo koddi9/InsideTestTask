@@ -1,0 +1,8 @@
+Получение токена через post http://localhost:8091/auth :
+curl -H "Content-Type: application/json" -d "{\"name\":\"user\",\"password\":\"password\"}" -o resultGetToken.json -D resultGetToken.headers http://localhost:8091/auth
+
+Сохранение сообщение через post http://localhost:8091/message :
+curl -H "content-type: application/json" -H "authorization: Bearer_eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU2OTg5NDk2fQ.aPxKEMka4taw1ciUqOLUEddkRsOltbz-VxBlmNJH32_9nNXgNg8JeH9Ex7ntrD7J7bxmQsccIElhcwShJEWT5g" -d "{\"name\": \"user\",\"message\" : \"NewMessage\"}" -o resultPostMessage.json -D resultPostMessage.headers http://localhost:8091/message
+
+Получение списка сообщений через post http://localhost:8091/messages :
+curl -H "content-type: application/json" -H "authorization: Bearer_eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU2OTg5NDk2fQ.aPxKEMka4taw1ciUqOLUEddkRsOltbz-VxBlmNJH32_9nNXgNg8JeH9Ex7ntrD7J7bxmQsccIElhcwShJEWT5g" -d "{\"name\": \"user\",\"message\" : \"history 5\"}" -o resultGetMessages.json -D resultGetMessages.headers http://localhost:8091/messages

@@ -46,6 +46,14 @@ public class AppService {
         return user.getMessages().stream().map(Message::getValue).limit(count).collect(Collectors.toList());
     }
 
+    /**
+     *Gets the token from the Authorization header value getting by the Http request.
+     *Pattern of the value: Bearer_token (e.g Bearer_eyJhbGc...)
+     * @param authValue - The raw value of the Authorization header
+     * @throws InvalidHeaderStructureException If the structure of the provided param does not match the pattern
+     * @return Token value as a string
+     *
+     */
     private String parseToken(String authValue) {
         if (!authValue.startsWith("Bearer_")) {
             throw new InvalidHeaderStructureException(HttpHeaders.AUTHORIZATION);
@@ -53,6 +61,13 @@ public class AppService {
         return authValue.substring(7).trim();
     }
 
+    /**
+     * Parses client message, validates structure and extracts the count of the response messages
+     * Pattern of the message: history count (e.g history 5)
+     * @param jsonMessage Client message
+     * @throws InvalidMessageStructureException If the structure doesn't contain key word "history" or satisfied the pattern
+     * @return Response messages count
+     */
     private int parseMsgCount(JsonMessage jsonMessage) {
         try {
             String[] msgParts = new String[2];

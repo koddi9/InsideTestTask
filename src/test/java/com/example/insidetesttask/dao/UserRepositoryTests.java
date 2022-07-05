@@ -23,7 +23,7 @@ public class UserRepositoryTests {
     private UserRepository repository;
 
     @Test
-    public void whenFindByName_thenReturnEmployee() {
+    public void whenFindUserByName_thenReturnUser() {
 
         User user = new User();
         user.setName("name");
